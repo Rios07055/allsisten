@@ -1,0 +1,10 @@
+def cadena_inversa_recursiva(string):
+    if len(string) == 0:
+        return ""
+    else:
+        return string[-1] + cadena_inversa_recursiva(string[:-1])
+
+cadena = "Juan Camilo David" #Cadena original: Juan Camilo David
+reverso = cadena_inversa_recursiva(cadena)
+print("Cadena original:", cadena)
+print("Reverso:", reverso) #Reverso: divaD oli maC nauJ
