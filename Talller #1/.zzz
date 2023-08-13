@@ -1,1 +1,26 @@
+#Dado las dimensiones de una matriz de nXm, mostrar los índices de la matriz en forma de forma horizontal.
 
+def mtr_hor(m): #O(n^2)
+    cont = 0 #O(1)
+    for i in range(len(m)): #O(n)
+        if cont%2 != 0: #O(n)
+            j = 1 #O(n)
+            for k in range(len(m[i])): #O(n^2) 
+                print(m[i][-j], end=", ") #O(n^2)
+                j -= 1 #O(n^2)
+        else: #O(n)
+            for j in range(len(m[i])): #O(n^2)
+                print(m[i][j], end=", ") #O(n^2)
+        cont += 1 #O(n)
+
+
+
+m = [[455,21315], 
+     [4,7],
+     [20,58],
+     [30, 10],
+     [9,55],
+     [75, 11],
+     [89,69],
+     [22,66]] #O(1)
+print(mtr_hor(m)) #O(n^2)
