@@ -76,3 +76,63 @@ def angulo_menor(horas: int, minutos: int) -> int:
 
 
 print(angulo_menor(rd.randint(0, 12), rd.randint(0, 60)))
+
+
+# • Dado la dimensión de una matriz cuadrada muestre los valores en
+# forma de caracol o vórtice.
+#    [1, 2, 3],
+#    [4, 5, 6],
+#    [7, 8, 9]
+# Valor Esperado = [5,6,9,8,7,4,1,2,3]
+
+def funcion(matriz):
+    vector = []
+    longitud = len(matriz)
+    direccion = 1
+    fila, columna = longitud // 2, longitud // 2
+    contador = 0
+    
+    while contador < longitud * longitud:
+        vector.append(matriz[fila][columna])
+        contador += 1
+        
+        if direccion == 0:  # centro
+            direccion = 1
+            columna += 1
+        elif direccion == 1:  # derecha
+            if columna == longitud - 1:
+                direccion = 4
+                fila += 1
+            else:
+                columna += 1
+        elif direccion == 4:  # abajo
+            if fila == longitud - 1:
+                direccion = 3
+                columna -= 1
+            else:
+                fila += 1
+        elif direccion == 3:  # izquierda
+            if columna == 0:
+                direccion = 2
+                fila -= 1
+            else:
+                columna -= 1
+        elif direccion == 2:  # arriba
+            if fila == 0:
+                direccion = 1
+                columna += 1
+            else:
+                fila -= 1
+                
+    return vector
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+resultado_esperado = [5, 6, 9, 8, 7, 4, 1, 2, 3]
+resultado = funcion(matrix)
+print(resultado == resultado_esperado)
+print(resultado)
