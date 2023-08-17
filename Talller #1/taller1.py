@@ -43,3 +43,43 @@ def suma_extremos(num1, num2, suma = 0):
 num1 = 14678
 num2 = 52579
 print(suma_extremos(num1, num2))
+
+
+import numpy as np
+import random as rd
+
+
+# Dado dos enteros que indican la hora y los minutos muestre el ángulo
+# menor entre las dos manecillas de un reloj análogo.
+def angulo_menor(horas: int, minutos: int) -> int:
+    if horas*5 == minutos:
+        print(horas, minutos)
+        return 0
+    if horas == 0:
+        if minutos > 30:
+            print(horas, minutos)
+            return 360 - minutos*6
+        else:
+            print(horas, minutos)
+            return minutos*6
+    elif minutos == 0:
+        if horas > 6:
+            print(horas, minutos)
+            return 360 - horas*30
+        else:
+            print(horas, minutos)
+            return horas*30
+    elif minutos > 30 or horas > 6:
+        grados_1 = 360 - np.abs(minutos*6 - horas*30)
+        grados_2 = np.abs(minutos*6 - horas*30)
+        print(horas, minutos)
+        if grados_1 > grados_2:
+            return grados_2
+        else:
+            return grados_1
+    else:
+        print(horas, minutos)
+        return np.abs(minutos*6 - horas*30)
+
+
+print(angulo_menor(rd.randint(0, 12), rd.randint(0, 60)))
