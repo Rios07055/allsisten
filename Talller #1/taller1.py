@@ -116,7 +116,7 @@ def angulo_menor(horas: int, minutos: int, grados=0) -> int:
         # Cada minuto sumado representa 6 grados en el reloj
         return angulo_menor(horas, minutos + 1, grados + 6)
     else:
-        # Cada minuto sumado representa 6 grados en el reloj
+        # Cada hora sumada representa 30 grados en el reloj
         return angulo_menor(horas + 1, minutos, grados + 30)
 
 
