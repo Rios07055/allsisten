@@ -77,6 +77,53 @@ def angulo_menor(horas: int, minutos: int) -> int:
 
 print(angulo_menor(rd.randint(0, 12), rd.randint(0, 60)))
 
+# Reorganización del código anterior.
+import numpy as np
+
+
+def angulo_menor(horas: int, minutos: int) -> int:
+    # Condición simple
+    if horas*5 == minutos:
+        return 0
+    # Medimos los ángulos de dos formas diferentes
+    # Éste mide el ángulo que se forma por la exterior de las manecillas
+    angulo_1 = 360 - np.abs(horas*30 - minutos*6)
+    # Éste mide el ángulo que se forma por la interior de las manecillas
+    angulo_2 = np.abs(horas*30 - minutos*6)
+    # Compara ambos ángulos para ver cuál es el menor y lo retorna
+    if angulo_2 > angulo_1:
+        return angulo_1
+    else:
+        return angulo_2
+
+
+print(angulo_menor(12, 15))
+
+
+# Reorganización del ejercicio anterior usando recursión.
+def angulo_menor(horas: int, minutos: int, grados=0) -> int:
+    # Caso base
+    if horas*5 == minutos:
+        # Toma el ángulo exterior
+        if grados > 180:
+            grados = 360 - grados
+            return grados
+        # Toma el ángulo interior
+        else:
+            return grados
+    # Comparamos cuál es mayor para luego "igualar" las manecillas mediante la recursión
+    elif horas*5 > minutos:
+        # Cada minuto sumado representa 6 grados en el reloj
+        return angulo_menor(horas, minutos + 1, grados + 6)
+    else:
+        # Cada minuto sumado representa 6 grados en el reloj
+        return angulo_menor(horas + 1, minutos, grados + 30)
+
+
+print(angulo_menor(3, 55))
+
+
+
 
 # • Dado la dimensión de una matriz cuadrada muestre los valores en
 # forma de caracol o vórtice.
